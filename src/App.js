@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Main from "./components/Main";
+import Detail from "./components/Detail";
+import Form from "./components/Form";
+import Bookings from "./components/Bookings";
 
 function App() {
+  if(localStorage.getItem('myShows')==null){
+    const myShows = [];
+    localStorage.setItem('myShows', JSON.stringify(myShows));
+  }
+//   window.onbeforeunload = function() {
+//     localStorage.clear();
+//  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='' element={<Home/>}>
+          <Route path='/' element={<Main/>}/>
+          <Route
+            path='detail/:index'
+            element={<Detail/>}
+          />
+          <Route
+            path='form/:index'
+            element={<Form/>}
+          />
+           <Route
+            path='bookings'
+            element={<Bookings/>}
+          />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
