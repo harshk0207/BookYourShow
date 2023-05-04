@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import '../App.css'
 
 const Main = () => {
   const [allShows,setAllShows]=useState([]);
@@ -16,7 +17,7 @@ const Main = () => {
     getShows();
   },[]);
   return (
-    <div className="container" style={{display:'grid',gridTemplateColumns:'auto auto auto'}}>
+    <div className="show container">
     {allShows?allShows.map((item,index)=>{
         return (
           <div className="card" style={{width:'21rem', marginInline:"auto", marginTop:'5rem',textAlign:'center',alignItems:'center',alignContent:'center'}}>
@@ -28,7 +29,7 @@ const Main = () => {
               <h5 style={{textAlign:"center"}}>{item.show.name}</h5>
               <p className="card-text">Language - {item.show.language}</p>
               <strong>Genre</strong>
-              <p style={{display:'flex',marginTop:'0.5rem'}}>
+              <p style={{display:'grid',gridTemplateColumns:'auto auto auto',marginTop:'0.5rem'}}>
                 {item.show.genres?item.show.genres.map((genre,index)=>{
                   return <span className="badge text-bg-success mx-1">{genre}</span>
                 }):''}
